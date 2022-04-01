@@ -1,0 +1,17 @@
+version: '3'
+
+volumes:
+  keycloak_data:
+    driver: local
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    container_name: keycloak
+    volumes:
+      - keycloak_data:/opt/jboss/keycloak
+#    environment:
+#      KEYCLOAK_USER: admin
+#      KEYCLOAK_PASSWORD: admin
+    ports:
+      - 8080:8080
