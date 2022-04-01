@@ -27,7 +27,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 
-@Service
+//@Service
 public class JWTProvider {
 
     private final JwtEncoder encoder;
@@ -50,8 +50,8 @@ public class JWTProvider {
             "t1Dv1wNo9p0RDS8pAkA2USodtrY84jW0fOzuJ8y2OICHK1rDhNVxM85+BSCXV9hb\n" +
             "fdWxtXXffOeMA6D7AA5RdwEGbXxn+0iYBHcFI9qq";
 
-    @Autowired
-    private JwtDecoder decoder;
+    /*@Autowired
+    private JwtDecoder decoder;*/
 
     public JWTProvider() {
         ImmutableSecret<SecurityContext> immutableSecret = new ImmutableSecret<>(privateKey.getBytes());
@@ -87,10 +87,5 @@ public class JWTProvider {
         } catch (ParseException | BadJOSEException | JOSEException e) {
             return null;
         }
-    }
-
-    @PostConstruct
-    void check() {
-        Jwt jwt = generateToken();
     }
 }
