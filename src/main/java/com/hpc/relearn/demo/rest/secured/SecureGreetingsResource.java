@@ -13,8 +13,13 @@ import java.util.Map;
 @RequestMapping("/api/secured/greet")
 public class SecureGreetingsResource {
 
+    public static final String PREFERRED_USERNAME = "preferred_username";
+    public static final String EMAIL = "email";
+
     @GetMapping
     public ResponseEntity<Object> greet(@AuthenticationPrincipal Jwt jwt) {
-        return ResponseEntity.ok(Map.of("message", String.format("Hello %s!", jwt.getClaimAsString("preferred_username"))));
+        var username = jwt.getClaimAsString(PREFERRED_USERNAME);
+        var email = jwt.getClaimAsString(EMAIL);
+        return ResponseEntity.ok(Map.of("greetings", String.format("Hello %s!", username), EMAIL, email));
     }
 }
